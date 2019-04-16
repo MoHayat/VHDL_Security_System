@@ -16,7 +16,7 @@ entity SPI_Receiver is
     -- Receiver Outputs
     R_level_out        : out std_logic_vector(7 downto 0);
     G_level_out        : out std_logic_vector(7 downto 0);
-	B_level_out        : out std_logic_vector(7 downto 0)
+    B_level_out        : out std_logic_vector(7 downto 0)
   );
 end SPI_Receiver;
 
