@@ -4,15 +4,15 @@ use ieee.std_logic_1164.all;
 
 entity RAM is
   generic(
-    ADDR_W : integer :=  4; -- digits to represent memory locations
-    DATA_W : integer := 24; -- size of data to store
-    BUFF_L : integer := 99 -- temp holder to store bits before acual storage (i think)
+    ADDR_W : integer :=  8; -- digits to represent memory locations
+    DATA_W : integer := 10; -- size of data to store
+    BUFF_L : integer := 1; -- temp holder to store bits before acual storage (i think)
   );
   port(
     -- inputs
     clk        : in std_logic;
     n_reset    : in std_logic; -- clears all fifo blocks
-    rd_en      : in std_logic; -- enables read for all fifo blocks
+    rd_en      : in std_logic; -- enables read for all fifo blocks (CHANGE TO VECTOR)
     wr_en      : in std_logic; -- enables read for all fifo blocks
     data_in_r  : in std_logic_vector(ADDR_W-1 downto 0); -- red data in
     data_in_g  : in std_logic_vector(ADDR_W-1 downto 0); -- green data in

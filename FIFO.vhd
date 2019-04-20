@@ -28,9 +28,9 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 ----------------------------------------------------------------------------
 entity fifo is
 	Generic(
-			ADDR_W	: integer	:= 4;					-- address width in bits
-			DATA_W 	: integer	:= 24; 				-- data width in bits
-			BUFF_L	: integer 	:=16;					-- buffer length must be less than address space as in  BUFF_L <or= 2^(ADDR_W)-1
+			ADDR_W	: integer	:= 8;					-- address width in bits
+			DATA_W 	: integer	:= 10; 				-- data width in bits
+			BUFF_L	: integer 	:= 1;					-- buffer length must be less than address space as in  BUFF_L <or= 2^(ADDR_W)-1
 		--	ALMST_F	: integer 	:= 3;					-- fifo flag for almost full regs away from empty fifo
 		--	ALMST_E	: integer	:= 3						-- fifo regs away from empty fifo
 			);
