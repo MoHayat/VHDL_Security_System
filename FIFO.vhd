@@ -28,25 +28,25 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 ----------------------------------------------------------------------------
 entity fifo is
 	Generic(
-			ADDR_W	: integer	:= 8;					-- address width in bits
-			DATA_W 	: integer	:= 10; 				-- data width in bits
-			BUFF_L	: integer 	:= 1;					-- buffer length must be less than address space as in  BUFF_L <or= 2^(ADDR_W)-1
+			ADDR_W	: integer	:= 4;					-- address width in bits
+			DATA_W 	: integer	:= 8; 				-- data width in bits
+			BUFF_L	: integer 	:= 10					-- buffer length must be less than address space as in  BUFF_L <or= 2^(ADDR_W)-1
 		--	ALMST_F	: integer 	:= 3;					-- fifo flag for almost full regs away from empty fifo
 		--	ALMST_E	: integer	:= 3						-- fifo regs away from empty fifo
 			);
 	Port (
-			clk 					: in std_logic;
-			n_reset 				: in std_logic;
-			rd_en 				: in std_logic; 		-- read enable
-			wr_en					: in std_logic; 		-- write enable
-			data_in 				: in std_logic_vector(DATA_W- 1 downto 0);
-			data_out				: out std_logic_vector(DATA_W- 1 downto 0);
-			data_count			: out std_logic_vector(ADDR_W downto 0);
-			empty 				: out std_logic;
-			full					: out std_logic;
+			clk 	   : in std_logic;
+			n_reset    : in std_logic;
+			rd_en      : in std_logic; 		-- read enable
+			wr_en	   : in std_logic; 		-- write enable
+			data_in    : in std_logic_vector(DATA_W- 1 downto 0);
+			data_out   : out std_logic_vector(DATA_W- 1 downto 0);
+			data_count : out std_logic_vector(ADDR_W downto 0);
+			empty 	   : out std_logic;
+			full	   : out std_logic;
 		--	almst_empty 		: out std_logic;
 		--	almst_full 			: out std_logic;
-		--	err					: out std_logic
+			err		   : out std_logic
 );
 end fifo;
 ----------------------------------------------------------------------------
@@ -223,8 +223,8 @@ begin
 	-------- connect ff to output ports
 	full <= full_ff;
 	empty <= empty_ff;
-	almst_empty <= almst_e_ff;
-	almst_full <= almst_f_ff;
+	--almst_empty <= almst_e_ff;
+	--almst_full <= almst_f_ff;
 	data_count <= q_reg;
 
 end arch;
