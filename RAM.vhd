@@ -18,14 +18,12 @@ entity RAM is
  
 
     --outputs
-    data_out_r   : out std_logic_vector(DATA_W-1 downto 0); -- red data out
-    data_out_g   : out std_logic_vector(DATA_W-1 downto 0); -- green data out
-    data_out_b   : out std_logic_vector(DATA_W-1 downto 0); -- blue data out
-    data_count_r : out std_logic_vector(ADDR_W   downto 0); -- address of bits
-    data_count_g : out std_logic_vector(ADDR_W   downto 0); -- address of bits        
-    data_count_b : out std_logic_vector(ADDR_W   downto 0); -- address of bits       
-    empty_rgb    : out std_logic_vector(2 downto 0); -- flags for when fifo block is empty
-    full_rgb     : out std_logic_vector(2 downto 0)
+    data_out_r : out std_logic_vector(DATA_W-1 downto 0); -- red data out
+    data_out_g : out std_logic_vector(DATA_W-1 downto 0); -- green data out
+    data_out_b : out std_logic_vector(DATA_W-1 downto 0); -- blue data out
+    data_count : out std_logic_vector(ADDR_W   downto 0); -- address of bits
+    empty_rgb  : out std_logic_vector(2 downto 0); -- flags for when fifo block is empty
+    full_rgb   : out std_logic_vector(2 downto 0)
   );
 end RAM;
 
@@ -36,11 +34,11 @@ red_fifo : entity work.FIFO(arch)
 port map(
   clk        => clk,
   n_reset    => n_reset,
-  rd_en      => rd_en(2),
-  wr_en      => wr_en(2),
+  rd_en      => rd_en(0),
+  wr_en      => wr_en(0),
   data_in    => data_in,
   data_out   => data_out_r,
-  data_count => data_count_r,
+  data_count => data_count,
   empty      => empty_rgb(0),
   full       => full_rgb(0)
 );
@@ -53,7 +51,7 @@ port map(
   wr_en      => wr_en(1),
   data_in    => data_in,
   data_out   => data_out_g,
-  data_count => data_count_g,
+  data_count => data_count,
   empty      => empty_rgb(1),
   full       => full_rgb(1)
 );
@@ -62,11 +60,11 @@ blue_fifo : entity work.FIFO(arch)
 port map(
   clk        => clk,
   n_reset    => n_reset,
-  rd_en      => rd_en(0),
-  wr_en      => wr_en(0),
+  rd_en      => rd_en(2),
+  wr_en      => wr_en(2),
   data_in    => data_in,
   data_out   => data_out_b,
-  data_count => data_count_b,
+  data_count => data_count,
   empty      => empty_rgb(2),
   full       => full_rgb(2)
 );
