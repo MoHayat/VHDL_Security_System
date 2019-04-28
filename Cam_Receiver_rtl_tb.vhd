@@ -10,7 +10,7 @@ end Cam_Receiver_rtl_tb;
  
 architecture test of Cam_Receiver_rtl_tb is 
   -- define clock period
-constant clock_period  : time := 27.78 ns;
+constant clock_period  : time := 27.77778 ns;
 signal clk_in_s        : std_logic;
 signal rst_in_s   	 : std_logic; 
   signal VSYNC_in_s      : std_logic;
@@ -43,7 +43,7 @@ begin
   end process;
 
   
-  
+
    -- stimulus process
   stim_proc : process
   begin 
@@ -53,6 +53,7 @@ begin
 	RGB_level_in_s <= x"FF";
 	wait for clock_period;
 	rst_in_s       <= '0';
+	VSYNC_in_s     <= '0';
 	wait for clock_period;
 	RGB_level_in_s <= x"FE";
 	wait for clock_period;
