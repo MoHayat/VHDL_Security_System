@@ -17,14 +17,15 @@ architecture test of RAM_tb is
   signal data_out_r_s   : std_logic_vector(7 downto 0);
   signal data_out_g_s   : std_logic_vector(7 downto 0);
   signal data_out_b_s   : std_logic_vector(7 downto 0);
-  signal data_count_s   : std_logic_vector(4 downto 0);
   signal empty_rgb_s    : std_logic_vector(2 downto 0);
   signal full_rgb_s     : std_logic_vector(2 downto 0);
+  signal row_s          : integer;
+  signal column_s       : integer;
 
 begin
 
   --instantiate RAM module to begin testing
-  RAM_uut : entity work.RAM(structural)
+  RAM_uut : entity work.RAM(hybrid)
   port map(
     clk => clk_s,
     n_reset    => n_reset_s,
@@ -35,7 +36,9 @@ begin
     data_out_g => data_out_g_s,
     data_out_b => data_out_b_s,
     empty_rgb  => empty_rgb_s,
-    full_rgb   => full_rgb_s
+    full_rgb   => full_rgb_s,
+    row        => row_s,
+    column     => column_s
   );
 
   clk_process : process

@@ -31,8 +31,8 @@ architecture rtl of Cam_Receiver_rtl is
   ---------------------------------------------------------------------------
   --constants, types, functions
   ---------------------------------------------------------------------------
-constant Column_max  : integer := 8 ;  
-constant Row_max     : integer := 6 ;
+constant Column_max  : integer := 799 ;  
+constant Row_max     : integer := 599 ;
   
     type row_state is (
      odd_row,
@@ -42,8 +42,8 @@ constant Row_max     : integer := 6 ;
   ---------------------------------------------------------------------------
   --signals
   --------------------------------------------------------------------------- 
-signal Column_count_s        : integer range 0 to 800;
-signal Row_count_s           : integer range 0 to 600;
+signal Column_count_s        : integer range 0 to Column_max;
+signal Row_count_s           : integer range 0 to Row_max;
 signal state_s               : row_state; 
 begin
 RGB_sorter : process(rst_in, clk_36Mhz_in)
@@ -92,7 +92,8 @@ if (rst_in = '1') then
 				end if;
 		end case;
 	else
-		Row_count_s <= 0; --reached end of picture processing
+		
+		Read_EN_out    <= "000";
 	end if;
     end if;
 end process RGB_sorter;    
